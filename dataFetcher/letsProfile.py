@@ -7,13 +7,14 @@
 # FOR USE: replace ENTER_USERNAME with the Reddit username of the
 # user you want to get to know more about.
 
-import pprint
-import praw
-import operator
-import time
 import json
+import operator
+import pprint
+import time
 
-with open('../config.json') as f:
+import praw
+
+with open('config.json') as f:
     config = json.load(f)
 
 reddit = praw.Reddit(client_id=config['RedditDevCredentials']['client_id'],
