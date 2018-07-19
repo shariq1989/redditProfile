@@ -11,24 +11,14 @@ import {
   MatFormFieldModule,
   MatInputModule
 } from '@angular/material';
-
+import { SearchProfileComponent } from './search-profile/search-profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchProfileComponent,
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
-  exports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
