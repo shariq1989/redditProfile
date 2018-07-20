@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatMenuModule,
@@ -19,6 +20,7 @@ import { SearchProfileComponent } from './search-profile/search-profile.componen
     SearchProfileComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,

@@ -6,9 +6,8 @@
     Learn more about a Reddit user based on his or her activity
   </p>
   <mat-form-field>
-    <input matInput id="userId" formControlName="userId">
+    <input matInput [(ngModel)]="userId">
   </mat-form-field>
-  {{userId}}
   <div>
     <button mat-raised-button color="primary" (click)="doSearch()">Submit</button>
   </div>
