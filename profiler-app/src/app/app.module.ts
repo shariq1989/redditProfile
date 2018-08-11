@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 import {
   MatButtonModule,
   MatMenuModule,
@@ -22,6 +23,7 @@ import { SearchProfileComponent } from './search-profile/search-profile.componen
   imports: [
     FormsModule,
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatMenuModule,

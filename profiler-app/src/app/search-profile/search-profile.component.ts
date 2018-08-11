@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import {profileService} from '../profile.service';
 
 @Component({
   selector: 'app-search-profile',
@@ -6,16 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-profile.component.css']
 })
 export class SearchProfileComponent implements OnInit {
-
+  @Input()
   public userId = 'shariq1989';
 
-  constructor() { }
+  constructor(private profileServiceRef:profileService) { }
 
   ngOnInit() {
   }
 
   doSearch() {
     console.log(this.userId);
+    this.profileServiceRef.requestProfileData();
   }
 
 }
