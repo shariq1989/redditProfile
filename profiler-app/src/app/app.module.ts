@@ -11,7 +11,8 @@ import {
   MatIconModule,
   MatCardModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { SearchProfileComponent } from './search-profile/search-profile.component';
 
@@ -31,7 +32,8 @@ import { SearchProfileComponent } from './search-profile/search-profile.componen
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

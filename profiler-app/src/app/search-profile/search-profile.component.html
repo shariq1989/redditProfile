@@ -1,14 +1,34 @@
 <mat-card class='search-card'>
-  <mat-card-title>
-    Reddit Profiler
-  </mat-card-title>
-  <p>
-    Learn more about a Reddit user based on his or her activity
-  </p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="userId">
-  </mat-form-field>
-  <div>
-    <button mat-raised-button color="primary" (click)="doSearch()">Submit</button>
+  <div [hidden]="!showSearchForm">
+    <mat-card-header>
+      <mat-card-title>
+        Reddit Profiler
+      </mat-card-title>
+      <mat-card-subtitle>
+        Learn more about a Reddit user based on his or her activity
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-form-field>
+      <input matInput [(ngModel)]="userId">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" (click)="doSearch()">Submit</button>
+    </div>
+  </div>
+
+  <div [hidden]="!showLoadingSpinner">
+    <mat-card-header>
+      <mat-spinner></mat-spinner>
+      <mat-card-title>Loading User Data</mat-card-title>
+    </mat-card-header>
+  </div>
+
+  <div [hidden]="!showProfileAnalysis">
+    <mat-card-header>
+      <mat-card-title>{{userId}}'s Profile</mat-card-title>
+    </mat-card-header>
+    <li *ngFor="let element of userData">
+      {{element}}
+    </li>
   </div>
 </mat-card>
