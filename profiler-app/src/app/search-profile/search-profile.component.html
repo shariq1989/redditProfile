@@ -20,9 +20,9 @@
 
   <div [hidden]="!showProfileAnalysis">
     <h1 style="text-align:center;">{{userId}}'s Profile</h1>
-    <li *ngFor="let element of subredditArr">
+    <p *ngFor="let element of subredditArr">
       {{element.name}}
-    </li>
+    </p>
     <button mat-raised-button color="primary" (click)="backToHome()">Search Another Redditor</button>
   </div>
 </mat-card>
