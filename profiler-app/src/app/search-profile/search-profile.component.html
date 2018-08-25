@@ -1,34 +1,28 @@
 <mat-card class='search-card'>
-  <div [hidden]="!showSearchForm">
-    <mat-card-header>
-      <mat-card-title>
-        Reddit Profiler
-      </mat-card-title>
-      <mat-card-subtitle>
-        Learn more about a Reddit user based on his or her activity
-      </mat-card-subtitle>
-    </mat-card-header>
+  <div [hidden]="!showSearchForm" style="text-align:center">
+    <h1>Reddit Profiler</h1>
+    <h3>Learn more about a Reddit user based on activity data</h3>
     <mat-form-field>
-      <input matInput [(ngModel)]="userId">
+      <input matInput [(ngModel)]="userId" style="text-align:center">
     </mat-form-field>
     <div>
       <button mat-raised-button color="primary" (click)="doSearch()">Submit</button>
     </div>
   </div>
 
-  <div [hidden]="!showLoadingSpinner">
-    <mat-card-header>
-      <mat-spinner></mat-spinner>
-      <mat-card-title>Loading User Data</mat-card-title>
-    </mat-card-header>
+  <div [hidden]="!showLoadingSpinner" style="text-align:center;">
+    <h1 style="margin-top:5px;">Loading User Data</h1>
+    <mat-spinner style="margin:0 auto;"></mat-spinner>
+    <button mat-raised-button color="primary" (click)="backToHome()" style="margin-top:15px;">
+      Cancel
+    </button>
   </div>
 
   <div [hidden]="!showProfileAnalysis">
-    <mat-card-header>
-      <mat-card-title>{{userId}}'s Profile</mat-card-title>
-    </mat-card-header>
-    <li *ngFor="let element of userData">
-      {{element}}
+    <h1 style="text-align:center;">{{userId}}'s Profile</h1>
+    <li *ngFor="let element of subredditArr">
+      {{element.name}}
     </li>
+    <button mat-raised-button color="primary" (click)="backToHome()">Search Another Redditor</button>
   </div>
 </mat-card>

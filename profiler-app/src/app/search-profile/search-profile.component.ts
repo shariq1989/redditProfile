@@ -9,25 +9,38 @@ import { profileService } from '../profile.service';
 export class SearchProfileComponent implements OnInit {
   @Input()
   public userId = 'shariq1989';
-  private userData;
   private showSearchForm = true;
   private showLoadingSpinner = false;
   private showProfileAnalysis = false;
+  public subredditArr = []
 
   constructor(private profileServiceRef: profileService) { }
 
   ngOnInit() {
   }
 
+  backToHome() {
+    this.showSearchForm = true;
+    this.showLoadingSpinner = false;
+    this.showProfileAnalysis = false;
+  }
+
   doSearch() {
     this.showSearchForm = false;
     this.showLoadingSpinner = true;
+    this.subredditArr = [];
     let this_ = this;
     this.profileServiceRef.requestProfileData(this.userId, function (userData) {
       this_.showLoadingSpinner = false;
-      this_.showProfileAnalysis = true;
-      this_.userData = userData;
-      console.log(this_.userData);
+      //the user must have cancelled the search
+      if (this_.showSearchForm === false) {
+        this_.showProfileAnalysis = true;
+      }
+      for (let sub in userData) {
+        let subRedditObj = { name: sub, qty: userData[sub] }
+        this_.subredditArr.push(subRedditObj);
+      }
+      console.log(this_.subredditArr);
     });
   }
 

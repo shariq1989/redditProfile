@@ -8,10 +8,7 @@
 # user you want to get to know more about.
 
 import json
-import operator
-import pprint
 import time
-
 import praw
 
 
@@ -28,35 +25,27 @@ def getProfile(user_id):
     user_name = user_id  # get user profile
     user = reddit.redditor(user_name)
 
-    # GET USER SUBMISSIONS
-    start_sub = time.time()
+    start_fetching_time = time.time()
     submissions = user.submissions.top('all')
-    sub_karma_by_subreddit = {}
-    for submission in submissions:
-        subreddit = submission.subreddit.display_name
-        sub_karma_by_subreddit[subreddit] = (sub_karma_by_subreddit.
-                                             get(subreddit, 0)
-                                             + submission.score)
-    sorted_sub = sorted(sub_karma_by_subreddit.items(), key=operator.itemgetter(1), reverse=True)
-    print("PRINTING SUMBISSION STATS")
-    pprint.pprint(sorted_sub)
-    end_sub = time.time()
-
-    print("------")
-    print("PRINTING COMMENT STATS")
-    print("------")
-
-    # GET USER COMMENTS
-    start_comm = time.time()
     comments = user.comments.new(limit=500)
-    comm_karma_by_subreddit = {}
+
+    subreddit_list = {}
+
     for comment in comments:
-        comm_karma_by_subreddit[comment.subreddit.display_name] = (
-            comm_karma_by_subreddit.get(comment.subreddit.display_name, 0)
-            + comment.score)
-    sorted_comm = sorted(comm_karma_by_subreddit.items(), key=operator.itemgetter(1), reverse=True)
-    pprint.pprint(sorted_comm)
-    end_comm = time.time()
-    print("Submission collection:" + str("%.2f" % (end_sub - start_sub)) + " seconds.")
-    print("Comment collection:" + str("%.2f" % (end_comm - start_comm)) + " seconds.")
-    return json.dumps(sorted_sub);
+        if comment.subreddit.display_name not in subreddit_list:
+            subreddit_list[comment.subreddit.display_name] = 1
+        else:
+            score = subreddit_list[comment.subreddit.display_name]
+            subreddit_list[comment.subreddit.display_name] = score + 1
+
+    for submission in submissions:
+        if submission.subreddit.display_name not in subreddit_list:
+            subreddit_list[submission.subreddit.display_name] = 1
+        else:
+            score = subreddit_list[submission.subreddit.display_name]
+            subreddit_list[submission.subreddit.display_name] = score + 1
+
+    end_fetching_time = time.time()
+    print("Submission & Comment collection:" + str("%.2f" % (end_fetching_time - start_fetching_time)) + " seconds.")
+    print(subreddit_list)
+    return json.dumps(subreddit_list);
