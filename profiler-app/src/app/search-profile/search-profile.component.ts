@@ -12,6 +12,8 @@ export class SearchProfileComponent implements OnInit {
   private showSearchForm = true;
   private showLoadingSpinner = false;
   private showProfileAnalysis = false;
+  private showUserFound = false;
+  private showSearchError = false;
   public subredditArr = []
 
   constructor(private profileServiceRef: profileService) { }
@@ -23,6 +25,8 @@ export class SearchProfileComponent implements OnInit {
     this.showSearchForm = true;
     this.showLoadingSpinner = false;
     this.showProfileAnalysis = false;
+    this.showUserFound = false;
+    this.showSearchError = false;
   }
 
   doSearch() {
@@ -36,11 +40,16 @@ export class SearchProfileComponent implements OnInit {
       if (this_.showSearchForm === false) {
         this_.showProfileAnalysis = true;
       }
-      for (let sub in userData) {
-        let subRedditObj = { name: sub, qty: userData[sub] }
-        this_.subredditArr.push(subRedditObj);
+      if (Object.keys(userData).length === 0 && userData.constructor === Object) {
+        this_.showSearchError = true;
+      } else {
+        this_.showUserFound = true;
+        for (let sub in userData) {
+          let subRedditObj = { name: sub, qty: userData[sub] }
+          this_.subredditArr.push(subRedditObj);
+        }
+        console.log(this_.subredditArr);
       }
-      console.log(this_.subredditArr);
     });
   }
 

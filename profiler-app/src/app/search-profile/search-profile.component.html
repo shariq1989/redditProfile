@@ -19,7 +19,10 @@
   </div>
 
   <div [hidden]="!showProfileAnalysis" style="text-align:center;">
-    <h1 style="text-align:center;">{{userId}}'s Profile</h1>
+    <h1 style="text-align:center;" [hidden]="!showUserFound">{{userId}}'s Profile</h1>
+    <h1 style="text-align:center;" [hidden]="!showSearchError">Insufficient User Data</h1>
+    <h3 [hidden]="!showSearchError">{{userId}}'s profile either does not exist or does not have enough user data to perform
+      an analysis</h3>
     <p *ngFor="let element of subredditArr" style="text-align:left;">
       {{element.name}}
     </p>
