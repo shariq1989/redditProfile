@@ -6,23 +6,23 @@
       <input matInput [(ngModel)]="userId" style="text-align:center">
     </mat-form-field>
     <div>
-      <button mat-raised-button color="primary" (click)="doSearch()">Submit</button>
+      <button mat-raised-button color="accent" (click)="doSearch()">Submit</button>
     </div>
   </div>
 
   <div [hidden]="!showLoadingSpinner" style="text-align:center;">
     <h1 style="margin-top:5px;">Loading User Data</h1>
     <mat-spinner style="margin:0 auto;"></mat-spinner>
-    <button mat-raised-button color="primary" (click)="backToHome()" style="margin-top:15px;">
+    <button mat-raised-button color="accent" (click)="backToHome()" style="margin-top:15px;">
       Cancel
     </button>
   </div>
 
-  <div [hidden]="!showProfileAnalysis">
+  <div [hidden]="!showProfileAnalysis" style="text-align:center;">
     <h1 style="text-align:center;">{{userId}}'s Profile</h1>
-    <p *ngFor="let element of subredditArr">
+    <p *ngFor="let element of subredditArr" style="text-align:left;">
       {{element.name}}
     </p>
-    <button mat-raised-button color="primary" (click)="backToHome()">Search Another Redditor</button>
+    <button mat-raised-button color="accent" (click)="backToHome()">Search Another Redditor</button>
   </div>
 </mat-card>
