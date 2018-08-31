@@ -35,6 +35,8 @@ def getProfile(user_id):
         for comment in comments:
             if comment.subreddit.display_name not in subreddit_list:
                 subreddit_list[comment.subreddit.display_name] = 1
+                if comment.subreddit.over18:
+                    subreddit_list[comment.subreddit.display_name].append('nsfw')
             else:
                 score = subreddit_list[comment.subreddit.display_name]
                 subreddit_list[comment.subreddit.display_name] = score + 1
@@ -46,6 +48,8 @@ def getProfile(user_id):
         for submission in submissions:
             if submission.subreddit.display_name not in subreddit_list:
                 subreddit_list[submission.subreddit.display_name] = 1
+                if submission.subreddit.over18:
+                    subreddit_list[submission.subreddit.display_name].append('nsfw')
             else:
                 score = subreddit_list[submission.subreddit.display_name]
                 subreddit_list[submission.subreddit.display_name] = score + 1
