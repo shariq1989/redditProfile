@@ -36,7 +36,7 @@ def getProfile(user_id):
             if comment.subreddit.display_name not in subreddit_list:
                 subreddit_list[comment.subreddit.display_name] = [1]
                 if comment.subreddit.over18:
-                 subreddit_list[comment.subreddit.display_name].append('nsfw')
+                    subreddit_list[comment.subreddit.display_name].append('nsfw')
             else:
                 subArr = subreddit_list[comment.subreddit.display_name]
                 score = subArr[0]
@@ -59,7 +59,7 @@ def getProfile(user_id):
                 subArr = subreddit_list[submission.subreddit.display_name]
                 score = subArr[0]
                 if len(subArr) > 1:
-                   subreddit_list[submission.subreddit.display_name] = [score + 1, 'nsfw']
+                    subreddit_list[submission.subreddit.display_name] = [score + 1, 'nsfw']
                 else:
                     subreddit_list[submission.subreddit.display_name] = [score + 1]
     except Exception as e:
