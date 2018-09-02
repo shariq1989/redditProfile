@@ -28,4 +28,12 @@
     </p>
     <button mat-raised-button color="accent" (click)="backToHome()">Search Another Redditor</button>
   </div>
+
+  <div [hidden]="!showProfileAnalysis" style="text-align:center;">
+    <h1 style="text-align:center;" [hidden]="!showUserFound">NSFW Activity</h1>
+    <p *ngFor="let element of nsfwSubredditArr" style="text-align:left;">
+      {{element.name}}
+    </p>
+    <button mat-raised-button color="accent" (click)="backToHome()">Search Another Redditor</button>
+  </div>
 </mat-card>

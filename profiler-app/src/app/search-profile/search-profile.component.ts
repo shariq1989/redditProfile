@@ -15,6 +15,7 @@ export class SearchProfileComponent implements OnInit {
   private showUserFound = false;
   private showSearchError = false;
   public subredditArr = []
+  public nsfwSubredditArr = []
 
   constructor(private profileServiceRef: profileService) { }
 
@@ -45,10 +46,16 @@ export class SearchProfileComponent implements OnInit {
       } else {
         this_.showUserFound = true;
         for (let sub in userData) {
-          let subRedditObj = { name: sub, qty: userData[sub] }
-          this_.subredditArr.push(subRedditObj);
+          let subDetails = userData[sub];
+          let subRedditObj = { name: sub, qty: subDetails[0] }
+          if (subDetails [1] == null) {
+            this_.subredditArr.push(subRedditObj);
+          } else {
+            this_.nsfwSubredditArr.push(subRedditObj);
+          }
         }
         console.log(this_.subredditArr);
+        console.log(this_.nsfwSubredditArr);
       }
     });
   }

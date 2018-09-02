@@ -34,12 +34,17 @@ def getProfile(user_id):
     try:
         for comment in comments:
             if comment.subreddit.display_name not in subreddit_list:
-                subreddit_list[comment.subreddit.display_name] = 1
+                subreddit_list[comment.subreddit.display_name] = [1]
                 if comment.subreddit.over18:
-                    subreddit_list[comment.subreddit.display_name].append('nsfw')
+                 subreddit_list[comment.subreddit.display_name].append('nsfw')
             else:
-                score = subreddit_list[comment.subreddit.display_name]
-                subreddit_list[comment.subreddit.display_name] = score + 1
+                subArr = subreddit_list[comment.subreddit.display_name]
+                score = subArr[0]
+                if len(subArr) > 1:
+                    subreddit_list[comment.subreddit.display_name] = [score + 1, 'nsfw']
+                else:
+                    subreddit_list[comment.subreddit.display_name] = [score + 1]
+
     except Exception as e:
         print('EXCEPTION IN COMMENT COLLECTION')
         print(e)
@@ -47,12 +52,16 @@ def getProfile(user_id):
     try:
         for submission in submissions:
             if submission.subreddit.display_name not in subreddit_list:
-                subreddit_list[submission.subreddit.display_name] = 1
+                subreddit_list[submission.subreddit.display_name] = [1]
                 if submission.subreddit.over18:
                     subreddit_list[submission.subreddit.display_name].append('nsfw')
             else:
-                score = subreddit_list[submission.subreddit.display_name]
-                subreddit_list[submission.subreddit.display_name] = score + 1
+                subArr = subreddit_list[submission.subreddit.display_name]
+                score = subArr[0]
+                if len(subArr) > 1:
+                   subreddit_list[submission.subreddit.display_name] = [score + 1, 'nsfw']
+                else:
+                    subreddit_list[submission.subreddit.display_name] = [score + 1]
     except Exception as e:
         print('EXCEPTION IN SUBMISSION COLLECTION')
         print(e)
