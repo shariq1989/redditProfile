@@ -1,5 +1,5 @@
-<mat-card class='search-card'>
-  <div [hidden]="!showSearchForm" style="text-align:center">
+<mat-card *ngIf="showSearchForm" class='centered-card'>
+  <div style="text-align:center">
     <h1>Reddit Profiler</h1>
     <h3>Learn more about a Reddit user based on activity data</h3>
     <mat-form-field>
@@ -9,31 +9,37 @@
       <button mat-raised-button color="accent" (click)="doSearch()">Submit</button>
     </div>
   </div>
+</mat-card>
 
-  <div [hidden]="!showLoadingSpinner" style="text-align:center;">
+<mat-card *ngIf="showLoadingSpinner" class='centered-card'>
+  <div style="text-align:center;">
     <h1 style="margin-top:5px;">Loading User Data</h1>
     <mat-spinner style="margin:0 auto;"></mat-spinner>
     <button mat-raised-button color="accent" (click)="backToHome()" style="margin-top:15px;">
       Cancel
     </button>
   </div>
-
-  <div [hidden]="!showProfileAnalysis" style="text-align:center;">
-    <h1 style="text-align:center;" [hidden]="!showUserFound">{{userId}}'s Profile</h1>
-    <h1 style="text-align:center;" [hidden]="!showSearchError">Insufficient User Data</h1>
+</mat-card>
+<div [hidden]="!showProfileAnalysis">
+  <div style="text-align:center;">
+    <h1 [hidden]="!showUserFound">{{userId}}'s Profile</h1>
+    <h1 [hidden]="!showSearchError">Insufficient User Data</h1>
     <h3 [hidden]="!showSearchError">{{userId}}'s profile either does not exist or does not have enough user data to perform
       an analysis</h3>
+  </div>
+  <mat-card>
     <p *ngFor="let element of subredditArr" style="text-align:left;">
       {{element.name}}
     </p>
     <button mat-raised-button color="accent" (click)="backToHome()">Search Another Redditor</button>
-  </div>
-
-  <div [hidden]="!showProfileAnalysis" style="text-align:center;">
-    <h1 style="text-align:center;" [hidden]="!showUserFound">NSFW Activity</h1>
-    <p *ngFor="let element of nsfwSubredditArr" style="text-align:left;">
-      {{element.name}}
-    </p>
-    <button mat-raised-button color="accent" (click)="backToHome()">Search Another Redditor</button>
-  </div>
-</mat-card>
+  </mat-card>
+  <mat-card>
+    <div style="text-align:center;">
+      <h3 [hidden]="!showUserFound">NSFW Activity</h3>
+      <p *ngFor="let element of nsfwSubredditArr" style="text-align:left;">
+        {{element.name}}
+      </p>
+      <button mat-raised-button color="accent" (click)="backToHome()">Search Another Redditor</button>
+    </div>
+  </mat-card>
+</div>

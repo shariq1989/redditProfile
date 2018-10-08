@@ -1,7 +1,12 @@
-.search-card {
+.centered-card {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    vertical-align: middle;
+}
+
+.displayed-card {
+    max-width: 200px;
 }
 
 h1 {
